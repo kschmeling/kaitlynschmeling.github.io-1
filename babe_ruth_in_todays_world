@@ -25,9 +25,7 @@ library(ggrepel)
 library(ggbeeswarm)
 library(patchwork)
 set.seed(1234)
-#| message: false
-#| warning: false
-hitters <- read_csv("baseballhitters.csv")
+
 #| message: false
 #| warning: false
 br <- read_csv("baberuth.csv")
@@ -44,8 +42,8 @@ ggplot(data, aes(x = player, y = home_runs, fill = player)) +
   geom_bar(stat = "identity") +
   labs(
  title = "Babe Ruth's Batting Average Over His Career",
-    x = "player",
-    y = "homeruns",
+    x = "Player",
+    y = "Homeruns",
     caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
     subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.")
 #|\\ message: false
@@ -82,3 +80,29 @@ ggplot(babe_ruth_data, aes(x = year, y = batting_avg)) +
 #|\\ message: false
 #|\\ warning: false 
 ```
+
+Within Babe Ruth's career you can see that he was up and down for hitting home runs. In his entire career he has 60 home runs in the American League. As of now looking Aaron Judge is sitting with 62, for he has surpassed Ruth.
+
+```{r}
+slugging_data <- data.frame(
+  player = c(rep("Babe Ruth", 10), rep("Mike Trout", 10)),
+  season = rep(1:10, 2),
+  slugging_percentage = c(0.847, 0.847, 0.772, 0.765, 0.756, 0.847, 0.847, 0.772, 0.765, 0.756,
+                          0.600, 0.630, 0.590, 0.580, 0.570, 0.600, 0.630, 0.590, 0.580, 0.570)
+)
+
+ggplot(slugging_data, aes(x = season, y = slugging_percentage, color = player)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Slugging Percentage: Babe Ruth vs. Mike Trout",
+    x = "Season",
+    y = "Slugging Percentage",
+    color = "Player",
+    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.",
+  ) +
+  theme_minimal()
+```
+
+
+Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and each of their slugging percentages you can see that Babe Ruth ranked higher. I think that if they were to compete in today's baseball world they would be similar. Due to the higher technology and better equipment, Mike Trout has the potential to be almost as good as Babe.
