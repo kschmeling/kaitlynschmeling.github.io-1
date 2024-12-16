@@ -25,15 +25,6 @@ library(ggrepel)
 library(ggbeeswarm)
 library(patchwork)
 set.seed(1234)
-#| message: false
-#| warning: false
-hitters <- read_csv("baseballhitters.csv")
-#| message: false
-#| warning: false
-br <- read_csv("baberuth.csv")
-#| message: false
-#| warning: false
-careerops <- read_csv("careerops.csv")
 
 data <- data.frame(
   year = c(1927, 2024),
