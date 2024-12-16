@@ -1,14 +1,15 @@
 ---
-title: "Is Jalen Hurts SuperBowl Worthy?"
+title: "Would Babe Ruth be as significant if he played today?"
 author: "Kaitlyn Schmeling"
-date: '2024-12-03'
-categories: [football, NFL, Jalen Hurts]
+date: '2024-11-10'
+categories: [baseball, Babe Ruth, Mike Trout]
 image: "image.png"
 format: 
   html:
     code-fold: true
 ---
-The Philadelphia Eagles and Jalen Hurts have been in the running for a great season so far. The Eagles are 11-2 currently. In Jalen's 2023 season, he was ranked 14th for passing yards and this is where the comparison begins. We will be looking at his passing stats.
+
+Babe Ruth was a professional baseball player in the MLB from 1914-1935. Ruth is also known as the greatest baseball player of all time. Babe Ruth was been an incredible player in his time, although where would he stand if he was playing in the today's league, is the question that I am asking. There are a lot of things that we must take into a look at before seeing where he stands. By looking at the statistics in the MLB in today's world and Babe Ruth's era, the numbers should align that he would not be as significant of a player.
 
 ```{r}
 #| message: false
@@ -20,90 +21,88 @@ library(ggalt)
 #| message: false
 #| warning: false
 library(ggtext)
-library(ggplot2)
 library(ggrepel)
 library(ggbeeswarm)
 library(patchwork)
 set.seed(1234)
 #| message: false
 #| warning: false
-qbs <- read_csv("2024 NFL Passing.csv")
+hitters <- read_csv("baseballhitters.csv")
 #| message: false
 #| warning: false
+br <- read_csv("baberuth.csv")
+#| message: false
+#| warning: false
+careerops <- read_csv("careerops.csv")
 
-passing_stats <- data.frame(
-  stat = c("Touchdowns", "Passing Yards", "Completion %"),
-  value = c(35, 4000, 68)
+data <- data.frame(
+  year = c(1927, 2024),
+  player = c("Babe Ruth", "Mike Trout"),
+  home_runs = c(41, 10)  
 )
-ggplot(passing_stats, aes(x = stat, y = value, fill = stat)) +
+ggplot(data, aes(x = player, y = home_runs, fill = player)) +
   geom_bar(stat = "identity") +
   labs(
-  title = "Is Jalen Hurts a top 5 ranked quarterback?", 
-  y = "Value",
-  x = "Stat Type",
-   caption = "Source: Football Reference | By Kaitlyn Schmeling",
-  subtitle = "Among the quaterbacks in the NFL, Jalen is quite low.")
-theme = theme(plot.title = element_text(size = 14, face = "bold")) & theme(plot.subtitle = element_text(size=8))
-  #|\\ message: false
-  #|\\ warning: false 
-  #|\\ message: false
-  #|\\ warning: false 
-   theme_set(theme_gray())
-#|\\ message: false
-#|\\ warning: false 
-ggsave("image.png")
-```
-The last time the Philadelphia Eagles won was on February 4th, 2018. This was against the New England Patriots. They have had a couple changes in the quarterback position since then, adding Jalen Hurts in 2020. When looking at all the statistics over these few years, you see Jalen entered the NFL not that long ago. We are going to be comparing Jalen Hurts, Patrick Mahomes, Joe Burrow and Josh Allen's QBR during the season.
-
-```{r}
-season_data <- data.frame(
-  week = 1:10,
-  Hurts = c(85, 87, 90, 91, 93, 92, 94, 95, 97, 98), 
-  Mahomes = c(88, 90, 92, 91, 94, 95, 96, 97, 98, 99),
-  Burrow = c(82, 83, 85, 87, 90, 89, 91, 93, 95, 96),
-  Allen = c(85, 86, 89, 90, 91, 93, 94, 96, 97, 98)
-)
-
-library(tidyr)
-season_data_long <- pivot_longer(season_data, cols = -week, names_to = "Quarterback", values_to = "qbr")
-
-ggplot(season_data_long, aes(x = week, y = qbr, color = Quarterback, group = Quarterback)) +
-  geom_line(size = 1.5) +
-  geom_point(size = 3) +
-  labs(title = "QBR Over Time (Jalen Hurts vs. The Top QBs)",
-       y = "QBR", 
-       x = "Week",
-caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
-    subtitle = "Jalen Hurts compared to the best comparing QBR's.")
+ title = "Babe Ruth's Batting Average Over His Career",
+    x = "player",
+    y = "homeruns",
+    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.")
 #|\\ message: false
 #|\\ warning: false 
    theme_set(theme_gray())
 #|\\ message: false
 #|\\ warning: false 
+
 ```
-This graph shows how Hurts' GBR compares to the top quarterbacks like Mahomes, Burrow and Allen throughout the season. While Mahomes may have a slight edge in consistency, Hurts' performance shows he is in the same elite class, that playing under pressure like this shows a strong Super Bowl-quality trait. 
+
+Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and hits per game both players had, were able to see how Babe Ruth was a significantly better batter in his time. You compare the years of 1927 and 2024, there are many people that stick out who have broke records but Mike Trout caught my eye.
 
 ```{r}
-games <- data.frame(
-  week = 1:10,
-  qbr = c(85, 88, 90, 93, 91, 92, 94, 95, 97, 98)  
+#| message: false
+#| warning: false
+babe_ruth_data <- data.frame(
+  year = c(1914, 1915, 1916, 1917, 1918, 1919, 1920, 1921, 1922, 1923),
+  batting_avg = c(0.200, 0.315, 0.272, 0.325, 0.300, 0.322, 0.376, 0.378, 0.315, 0.393)
 )
 library(ggplot2)
-ggplot(games, aes(x = week, y = qbr)) +
-  #|\\ message: false
-#|\\ warning: false 
-  geom_line(color = "gray", size = 1.5) +
-  geom_point(color = "black", size = 2) +
-  #|\\ message: false
-  #|\\ warning: false 
-  labs(title = "Jalen Hurts QBR Over Time", y = "QBR", x = "Game Week") +
-  theme_minimal()
-caption = "Source: Football Reference | By Kaitlyn Schmeling"
-  subtitle = "Quarterback Rating Over Time"
-theme = theme(plot.title = element_text(size = 14, face = "bold")) & theme(plot.subtitle = element_text(size=8))
-  #|\\ message: false
-  #|\\ warning: false 
+
+ggplot(babe_ruth_data, aes(x = year, y = batting_avg)) +
+  geom_line(color = "blue") +
+  labs(
+    title = "Babe Ruth's Batting Average Over His Career",
+    x = "Year",
+    y = "Batting Average",
+    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.",
+    theme = theme(plot.title = element_text(size = 14, face = "bold")) & theme(plot.subtitle = element_text(size=8))
+  ) 
    theme_set(theme_gray())
 #|\\ message: false
 #|\\ warning: false 
 ```
+
+Within Babe Ruth's career you can see that he was up and down for hitting home runs. In his entire career he has 60 home runs in the American League. As of now looking Aaron Judge is sitting with 62, for he has surpassed Ruth.
+
+```{r}
+slugging_data <- data.frame(
+  player = c(rep("Babe Ruth", 10), rep("Mike Trout", 10)),
+  season = rep(1:10, 2),
+  slugging_percentage = c(0.847, 0.847, 0.772, 0.765, 0.756, 0.847, 0.847, 0.772, 0.765, 0.756,
+                          0.600, 0.630, 0.590, 0.580, 0.570, 0.600, 0.630, 0.590, 0.580, 0.570)
+)
+
+ggplot(slugging_data, aes(x = season, y = slugging_percentage, color = player)) +
+  geom_line(size = 1) +
+  labs(
+    title = "Slugging Percentage: Babe Ruth vs. Mike Trout",
+    x = "Season",
+    y = "Slugging Percentage",
+    color = "Player",
+    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.",
+  ) +
+  theme_minimal()
+```
+
+Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and each of their slugging percentages you can see that Babe Ruth ranked higher. I think that if they were to compete in today's baseball world they would be similar. Due to the higher technology and better equipment, Mike Trout has the potential to be almost as good as Babe.
