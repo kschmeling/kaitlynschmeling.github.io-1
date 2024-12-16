@@ -2,13 +2,14 @@ project:
   type: website
   output-dir: ../kaitlynschmeling.github.io
   
+  
 website:
   title: "Blog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/kaitlynschmeling
+        href: https://github.com/kaitlynschmeling.github.io
       - icon: twitter
         href: https://twitter.com/kaitlynschmeling
 format:

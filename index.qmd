@@ -1,99 +1,12 @@
 ---
-title: "Would Babe Ruth be as significant if he played today?"
-author: "Kaitlyn Schmeling"
-date: '2024-11-10'
-categories: [baseball, Babe Ruth, Mike Trout]
-image: "image.png"
-format: 
-  html:
-    code-fold: true
+title: "Blog"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
 ---
-
-Babe Ruth was a professional baseball player in the MLB from 1914-1935. Ruth is also known as the greatest baseball player of all time. Babe Ruth was been an incredible player in his time, although where would he stand if he was playing in the today's league, is the question that I am asking. There are a lot of things that we must take into a look at before seeing where he stands. By looking at the statistics in the MLB in today's world and Babe Ruth's era, the numbers should align that he would not be as significant of a player.
-
-```{r}
-#| message: false
-#| warning: false
-library(tidyverse)
-#| message: false
-#| warning: false
-library(ggalt)
-#| message: false
-#| warning: false
-library(ggtext)
-library(ggrepel)
-library(ggbeeswarm)
-library(patchwork)
-set.seed(1234)
-
-data <- data.frame(
-  year = c(1927, 2024),
-  player = c("Babe Ruth", "Mike Trout"),
-  home_runs = c(41, 10)  
-)
-ggplot(data, aes(x = player, y = home_runs, fill = player)) +
-  geom_bar(stat = "identity") +
-  labs(
- title = "Babe Ruth's Batting Average Over His Career",
-    x = "player",
-    y = "homeruns",
-    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
-    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.")
-#|\\ message: false
-#|\\ warning: false 
-   theme_set(theme_gray())
-#|\\ message: false
-#|\\ warning: false 
-
-```
-
-Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and hits per game both players had, were able to see how Babe Ruth was a significantly better batter in his time. You compare the years of 1927 and 2024, there are many people that stick out who have broke records but Mike Trout caught my eye.
-
-```{r}
-#| message: false
-#| warning: false
-babe_ruth_data <- data.frame(
-  year = c(1914, 1915, 1916, 1917, 1918, 1919, 1920, 1921, 1922, 1923),
-  batting_avg = c(0.200, 0.315, 0.272, 0.325, 0.300, 0.322, 0.376, 0.378, 0.315, 0.393)
-)
-library(ggplot2)
-
-ggplot(babe_ruth_data, aes(x = year, y = batting_avg)) +
-  geom_line(color = "blue") +
-  labs(
-    title = "Babe Ruth's Batting Average Over His Career",
-    x = "Year",
-    y = "Batting Average",
-    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
-    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.",
-    theme = theme(plot.title = element_text(size = 14, face = "bold")) & theme(plot.subtitle = element_text(size=8))
-  ) 
-   theme_set(theme_gray())
-#|\\ message: false
-#|\\ warning: false 
-```
-
-Within Babe Ruth's career you can see that he was up and down for hitting home runs. In his entire career he has 60 home runs in the American League. As of now looking Aaron Judge is sitting with 62, for he has surpassed Ruth.
-
-```{r}
-slugging_data <- data.frame(
-  player = c(rep("Babe Ruth", 10), rep("Mike Trout", 10)),
-  season = rep(1:10, 2),
-  slugging_percentage = c(0.847, 0.847, 0.772, 0.765, 0.756, 0.847, 0.847, 0.772, 0.765, 0.756,
-                          0.600, 0.630, 0.590, 0.580, 0.570, 0.600, 0.630, 0.590, 0.580, 0.570)
-)
-
-ggplot(slugging_data, aes(x = season, y = slugging_percentage, color = player)) +
-  geom_line(size = 1) +
-  labs(
-    title = "Slugging Percentage: Babe Ruth vs. Mike Trout",
-    x = "Season",
-    y = "Slugging Percentage",
-    color = "Player",
-    caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
-    subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.",
-  ) +
-  theme_minimal()
-```
-
-Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and each of their slugging percentages you can see that Babe Ruth ranked higher. I think that if they were to compete in today's baseball world they would be similar. Due to the higher technology and better equipment, Mike Trout has the potential to be almost as good as Babe.
