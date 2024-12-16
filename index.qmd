@@ -1,12 +1,10 @@
 ---
-title: "Blog"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
-page-layout: full
-title-block-banner: true
+title: "Would Babe Ruth be as significant if he played today?"
+author: "Kaitlyn Schmeling"
+date: '2024-11-10'
+categories: [baseball, Babe Ruth, OPS]
+image: "image.png"
+format: 
+  html:
+    code-fold: true
 ---
