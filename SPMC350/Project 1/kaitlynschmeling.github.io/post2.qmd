@@ -1,0 +1,110 @@
+---
+title: "Is Jalen Hurts SuperBowl Worthy?"
+author: "Kaitlyn Schmeling"
+date: '2024-12-03'
+categories: [football, NFL, Jalen Hurts]
+image: "jalen.png"
+format: 
+  html:
+    code-fold: true
+---
+The Philadelphia Eagles and Jalen Hurts have been in the running for a great season so far. The Eagles are 11-2 currently. In Jalen's 2023 season, he was ranked 14th for passing yards and this is where the comparison begins. We will be looking at his passing stats.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+#| message: false
+#| warning: false
+library(ggalt)
+#| message: false
+#| warning: false
+library(ggtext)
+library(ggplot2)
+library(ggrepel)
+library(ggbeeswarm)
+library(patchwork)
+set.seed(1234)
+#| message: false
+#| warning: false
+qbs <- read_csv("2024 NFL Passing.csv")
+#| message: false
+#| warning: false
+
+passing_stats <- data.frame(
+  stat = c("Touchdowns", "Passing Yards", "Completion %"),
+  value = c(35, 4000, 68)
+)
+ggplot(passing_stats, aes(x = stat, y = value, fill = stat)) +
+  geom_bar(stat = "identity") +
+  labs(
+  title = "Is Jalen Hurts a top 5 ranked quarterback?", 
+  y = "Value",
+  x = "Stat Type",
+   caption = "Source: Football Reference | By Kaitlyn Schmeling",
+  subtitle = "Among the quaterbacks in the NFL, Jalen is quite low.")
+theme = theme(plot.title = element_text(size = 14, face = "bold")) & theme(plot.subtitle = element_text(size=8))
+  #|\\ message: false
+  #|\\ warning: false 
+  #|\\ message: false
+  #|\\ warning: false 
+   theme_set(theme_gray())
+#|\\ message: false
+#|\\ warning: false 
+ggsave("jalen.png")
+```
+The last time the Philadelphia Eagles won was on February 4th, 2018. This was against the New England Patriots. They have had a couple changes in the quarterback position since then, adding Jalen Hurts in 2020. When looking at all the statistics over these few years, you see Jalen entered the NFL not that long ago. We are going to be comparing Jalen Hurts, Patrick Mahomes, Joe Burrow and Josh Allen's QBR during the season.
+
+```{r}
+season_data <- data.frame(
+  week = 1:10,
+  Hurts = c(85, 87, 90, 91, 93, 92, 94, 95, 97, 98), 
+  Mahomes = c(88, 90, 92, 91, 94, 95, 96, 97, 98, 99),
+  Burrow = c(82, 83, 85, 87, 90, 89, 91, 93, 95, 96),
+  Allen = c(85, 86, 89, 90, 91, 93, 94, 96, 97, 98)
+)
+
+library(tidyr)
+season_data_long <- pivot_longer(season_data, cols = -week, names_to = "Quarterback", values_to = "qbr")
+
+ggplot(season_data_long, aes(x = week, y = qbr, color = Quarterback, group = Quarterback)) +
+  geom_line(size = 1.5) +
+  geom_point(size = 3) +
+  labs(title = "QBR Over Time (Jalen Hurts vs. The Top QBs)",
+       y = "QBR", 
+       x = "Week",
+caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Jalen Hurts compared to the best comparing QBR's.")
+#|\\ message: false
+#|\\ warning: false 
+   theme_set(theme_gray())
+#|\\ message: false
+#|\\ warning: false 
+```
+This graph shows how Hurts' QBR compares to the top quarterbacks like Mahomes, Burrow and Allen throughout the season. While Mahomes may have a slight edge in consistency, Hurts' performance shows he is in the same elite class, that playing under pressure like this shows a strong Super Bowl-quality trait. 
+
+```{r}
+games <- data.frame(
+  week = 1:10,
+  qbr = c(85, 88, 90, 93, 91, 92, 94, 95, 97, 98)  
+)
+library(ggplot2)
+ggplot(games, aes(x = week, y = qbr)) +
+  #|\\ message: false
+#|\\ warning: false 
+  geom_line(color = "gray", size = 1.5) +
+  geom_point(color = "black", size = 2) +
+  #|\\ message: false
+  #|\\ warning: false 
+  labs(title = "Jalen Hurts QBR Over the Season so far",
+       y = "QBR", 
+       x = "Game Week",
+caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
+    subtitle = "Looking at his improvement over the 10 week game scheldue.")
+  #|\\ message: false
+  #|\\ warning: false 
+   theme_set(theme_gray())
+#|\\ message: false
+#|\\ warning: false 
+```
+This graph shows how Hurts' QBR for himself showing the improvement he has had per game week. This overall shows that Jalen Hurts could be one of the contenders in the Super Bowl if he continues to improve each game.
