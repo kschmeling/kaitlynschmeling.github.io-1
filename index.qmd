@@ -26,13 +26,6 @@ library(ggbeeswarm)
 library(patchwork)
 set.seed(1234)
 
-#| message: false
-#| warning: false
-br <- read_csv("baberuth.csv")
-#| message: false
-#| warning: false
-
-
 data <- data.frame(
   year = c(1927, 2024),
   player = c("Babe Ruth", "Mike Trout"),
@@ -42,8 +35,8 @@ ggplot(data, aes(x = player, y = home_runs, fill = player)) +
   geom_bar(stat = "identity") +
   labs(
  title = "Babe Ruth's Batting Average Over His Career",
-    x = "Player",
-    y = "Homeruns",
+    x = "player",
+    y = "homeruns",
     caption = "Source: Sports Reference | By: Kaitlyn Schmeling",
     subtitle = "Babe Ruth's batting average came out to be 0.342 for his career.")
 #|\\ message: false
@@ -51,11 +44,10 @@ ggplot(data, aes(x = player, y = home_runs, fill = player)) +
    theme_set(theme_gray())
 #|\\ message: false
 #|\\ warning: false 
-ggsave("image.png")
+
 ```
 
 Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and hits per game both players had, were able to see how Babe Ruth was a significantly better batter in his time. You compare the years of 1927 and 2024, there are many people that stick out who have broke records but Mike Trout caught my eye.
-
 
 ```{r}
 #| message: false
@@ -103,6 +95,5 @@ ggplot(slugging_data, aes(x = season, y = slugging_percentage, color = player)) 
   ) +
   theme_minimal()
 ```
-
 
 Babe Ruth and Mike Trout are easily top MLB players to date. By looking at each season and each of their slugging percentages you can see that Babe Ruth ranked higher. I think that if they were to compete in today's baseball world they would be similar. Due to the higher technology and better equipment, Mike Trout has the potential to be almost as good as Babe.
